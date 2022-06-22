@@ -1,0 +1,52 @@
+[tool.poetry]
+name = "backend"
+version = "0.1.0"
+description = ""
+authors = ["Lorenzo C. <lorenzo@deepcellbio.com>"]
+
+[tool.poetry.dependencies]
+python = "~3.10"
+fastapi = "^0.78.*"
+SQLAlchemy = "^1.4.36"
+passlib = { extras = ["bcrypt"], version = "^1.7.4" }
+python-jose = { extras = ["cryptography"], version = "^3.3.0" }
+uvicorn = { extras = ["standard"], version = "^0.17.6" }
+pydantic = { extras = ["email"], version = "^1.9.1" }
+psycopg2 = "^2.9.3"
+emails = "^0.6"
+celery = "^5.2.6"
+tenacity = "^8.0.1"
+python-multipart = "^0.0.5"
+
+[tool.poetry.dev-dependencies]
+alembic = "^1.7.7"
+mypy = "^0.950"
+flake8 = "^4.0.1"
+black = "^22.3.0"
+isort = "^5.10.1"
+autoflake = "^1.4"
+pytest = "^7.1.2"
+jupyterlab = "^3.4.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+line_length = 99
+profile = "black"
+
+[tool.black]
+line-length = 99
+
+[mypy]
+ignore_missing_imports = true
+disallow_untyped_defs = true
+plugins = ["pydantic.mypy", "sqlmypy"]
+
+[flake8]
+max-line-length = 99
+exclude = [".git", "__pycache__", "__init__.py", ".mypy_cache", ".pytest_cache"]

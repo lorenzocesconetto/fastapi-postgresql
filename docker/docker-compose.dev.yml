@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+
+  backend:
+    build:
+      context: ./../
+      dockerfile: ./docker/Dockerfile
+      target: development
+    image: 'sample/backend'
+    env_file:
+      - ../.env
+    volumes:
+      - ./../:/application
+    ports:
+      - "8080:80" # application
+      - "8888:8888" # jupyter lab
+      - "5678:5678" # debugger
+    expose:
+      - "80"
+    depends_on:
+      - db
+    # entrypoint: bash -c "while true; do sleep 1; done"  # Infinite loop to keep container live doing nothing
+    command: development # Options: `debug`, `development`, `test`, `production`
+    environment:
+      - RUN_JUPYTER_LAB=true
+
+  db:
+    image: postgres:12
+    volumes:
+      - app-db-data:/var/lib/postgresql/data
+    env_file:
+      - ../.env
+
+  celery_worker:
+    build:
+      context: ./../
+      dockerfile: ./docker/Dockerfile
+      target: celery_worker
+    image: celery_worker
+    depends_on:
+      - db
+      - queue
+    env_file:
+      - ../.env
+
+  queue:
+    image: rabbitmq:3.10.5
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+
+volumes:
+  app-db-data:
+  rabbitmq-data:
