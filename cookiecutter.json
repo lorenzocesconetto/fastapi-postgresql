@@ -11,5 +11,8 @@
   "smtp_password": "",
   "smtp_emails_from_email": "info@sample.com",
   "postgres_password": "changethis",
-  "sentry_dsn": ""
+  "sentry_dsn": "",
+  "_copy_without_render": [
+    "app/mail/templates/**"
+  ]
 }
