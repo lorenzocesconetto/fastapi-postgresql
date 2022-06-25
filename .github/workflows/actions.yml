@@ -19,7 +19,7 @@ jobs:
           docker-compose -f docker/docker-compose.dev.yml up -d
       
       - name: Run tests
-        run: docker exec backend pytest --skip-auth
+        run: docker exec backend pytest ./tests
       
       - name: Stop containers
         if: always()

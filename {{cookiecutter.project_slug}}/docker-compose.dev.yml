@@ -4,14 +4,16 @@ services:
 
   backend:
     build:
-      context: ./../
-      dockerfile: ./docker/Dockerfile
+      context: ./
+      dockerfile: ./Dockerfile
       target: development
     image: 'sample/backend'
+    container_name: backend
+    restart: always
     env_file:
-      - ../.env
+      - .env
     volumes:
-      - ./../:/application
+      - ./:/application
     ports:
       - "8080:80" # application
       - "8888:8888" # jupyter lab
@@ -30,19 +32,24 @@ services:
     volumes:
       - app-db-data:/var/lib/postgresql/data
     env_file:
-      - ../.env
+      - .env
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD?Variable not set}
+      - POSTGRES_USER=${POSTGRES_USER?Variable not set}
+      - POSTGRES_DB=${POSTGRES_DB?Variable not set}
+
 
   celery_worker:
     build:
-      context: ./../
-      dockerfile: ./docker/Dockerfile
+      context: ./
+      dockerfile: ./Dockerfile
       target: celery_worker
     image: celery_worker
     depends_on:
       - db
       - queue
     env_file:
-      - ../.env
+      - .env
 
   queue:
     image: rabbitmq:3.10.5

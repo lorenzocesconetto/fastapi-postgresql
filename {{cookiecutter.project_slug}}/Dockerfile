@@ -15,7 +15,7 @@ RUN apt-get install -y libpq-dev
 # Copy packaging requirements
 COPY ./pyproject.toml ./poetry.lock ./
 
-ENTRYPOINT ["bash", "./docker/boot.sh"]
+ENTRYPOINT ["bash", "./boot.sh"]
 
 ###################
 # Development
