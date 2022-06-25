@@ -1,0 +1,18 @@
+{
+  "project_name": "sample",
+  "project_slug": "{{ cookiecutter.project_name|lower|replace(' ', '-') }}",
+  "secret_key": "changethis",
+  "first_superuser": "admin@sample.com",
+  "first_superuser_password": "changethis",
+  "backend_cors_origins": "[\"http://localhost\", \"http://localhost:4200\", \"http://localhost:3000\", \"http://localhost:8080\", \"https://localhost\", \"https://localhost:4200\", \"https://localhost:3000\", \"https://localhost:8080\"]",
+  "smtp_port": "587",
+  "smtp_host": "",
+  "smtp_user": "",
+  "smtp_password": "",
+  "smtp_emails_from_email": "info@sample.com",
+  "postgres_password": "changethis",
+  "sentry_dsn": "",
+  "_copy_without_render": [
+    "app/mail/templates/**"
+  ]
+}

@@ -1,0 +1,28 @@
+name: Run tests
+
+on: [push]
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Generate project from cookiecutter
+        run: |
+          pip install cookiecutter
+          cookiecutter --no-input -f ./ project_name="Testing Project"
+      
+      - name: Run docker compose
+        run: |
+          cd ./testing-project
+          docker-compose -f docker-compose.dev.yml up -d
+      
+      - name: Run tests
+        run: docker exec backend pytest ./tests
+      
+      - name: Stop containers
+        if: always()
+        run: |
+          cd ./testing-project
+          docker-compose -f docker-compose.dev.yml down
