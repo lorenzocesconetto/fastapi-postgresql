@@ -1,4 +1,4 @@
-name: tests
+name: Run tests
 
 on: [push]
 
@@ -8,10 +8,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Generate project from cookiecutter
-        run: pip install cookiecutter && cookiecutter --no-input -f ./ project_name="Testing Project"
+        run: |
+          pip install cookiecutter
+          cookiecutter --no-input -f ./ project_name="Testing Project"
       - name: Install poetry
-        run: pip install poetry && poetry config virtualenvs.create false
+        run: |
+          pip install poetry
+          poetry config virtualenvs.create false
       - name: Install dependencies
-        run: cd ./testing-project && poetry install
+        run: |
+          cd ./testing-project
+          poetry install
       - name: tests
-        run: cd ./testing-project && pytest tests/
+        run: |
+          cd ./testing-project
+          pytest tests/
