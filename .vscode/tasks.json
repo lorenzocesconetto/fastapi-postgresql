@@ -1,0 +1,21 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "autoflake: remove unused imports",
+            "command": "${command:python.interpreterPath} -m autoflake --in-place --expand-star-imports --remove-unused-variables --remove-all-unused-imports ${file}",
+            "isBackground": true,
+            "presentation": {
+                "echo": false,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "clear": false,
+                "close": true
+            },
+            "problemMatcher": []
+        },
+    ]
+}
