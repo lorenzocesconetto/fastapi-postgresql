@@ -7,15 +7,22 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
+      
       - name: Generate project from cookiecutter
         run: |
           pip install cookiecutter
           cookiecutter --no-input -f ./ project_name="Testing Project"
+      
       - name: Run docker compose
         run: |
           cd ./testing-project
-          docker-compose -f docker/docker-compose.dev.yml up
-      - name: tests
+          docker-compose -f docker/docker-compose.dev.yml up -d
+      
+      - name: Run tests
+        run: docker exec backend pytest --skip-auth
+      
+      - name: Stop containers
+        if: always()
         run: |
           cd ./testing-project
-          docker exec backend pytest --skip-auth
+          docker-compose -f "docker/docker-compose.yml" down
