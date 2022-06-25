@@ -14,4 +14,4 @@ jobs:
       - name: Install dependencies
         run: cd ./testing-project && poetry install
       - name: tests
-        run: pytest tests/
+        run: cd ./testing-project && pytest tests/
