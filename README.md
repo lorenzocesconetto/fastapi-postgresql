@@ -1,3 +1,5 @@
+![example workflow](https://github.com/lorenzocesconetto/fastapi-postgresql/actions/workflows/actions.yml/badge.svg)
+
 # FastAPI and PostgreSQL - Base Project Generator
 
 This repo creates a basic FastAPI backend using cookiecutter.
