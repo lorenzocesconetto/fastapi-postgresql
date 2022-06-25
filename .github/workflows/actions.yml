@@ -11,15 +11,11 @@ jobs:
         run: |
           pip install cookiecutter
           cookiecutter --no-input -f ./ project_name="Testing Project"
-      - name: Install poetry
-        run: |
-          pip install poetry
-          poetry config virtualenvs.create false
-      - name: Install dependencies
+      - name: Run docker compose
         run: |
           cd ./testing-project
-          poetry install
+          docker-compose -f docker/docker-compose.dev.yml up
       - name: tests
         run: |
           cd ./testing-project
-          pytest tests/
+          docker exec backend pytest --skip-auth
