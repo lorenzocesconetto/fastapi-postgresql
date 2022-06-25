@@ -1,4 +1,4 @@
-![example workflow](https://github.com/lorenzocesconetto/fastapi-postgresql/actions/workflows/actions.yml/badge.svg)
+![Tests status](https://github.com/lorenzocesconetto/fastapi-postgresql/actions/workflows/actions.yml/badge.svg)
 
 # FastAPI and PostgreSQL - Base Project Generator
 
@@ -6,7 +6,7 @@ This repo creates a basic FastAPI backend using cookiecutter.
 
 ## Why?
 
-I've based my work off of Tiangolo's [cookicutter project](https://github.com/tiangolo/full-stack-fastapi-postgresql) project generator. But Tiangolo's project seems to be unmaintained for two years now. There's some code that I've ported from his project that still looks the same. Despite that, I've made some major changes.
+I've based my work off of Tiangolo's [cookiecutter project](https://github.com/tiangolo/full-stack-fastapi-postgresql) project generator. But Tiangolo's project seems to be unmaintained for two years now. There's some code that I've ported from his project that still looks the same. Despite that, I've made some major changes.
 
 I decided to create my own boilerplate in order to address some issues:
 - Create a very simple and intuitive codebase.
