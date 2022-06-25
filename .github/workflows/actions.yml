@@ -10,6 +10,6 @@ jobs:
       - name: Generate project from cookiecutter
         run: pip install cookiecutter && cookiecutter --no-input -f ./ project_name="Testing Project"
       - name: Poetry install dependencies
-        run: pip install poetry && poetry install
+        run: cd ./testing-project && pip install poetry && poetry install
       - name: tests
-        run: cd ./testing-project && pytest tests/
+        run: pytest tests/
