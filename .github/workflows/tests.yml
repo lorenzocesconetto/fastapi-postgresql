@@ -1,0 +1,15 @@
+name: tests
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Generate project from cookiecutter
+        run: cookiecutter --no-input -f ./ project_name="Testing Project"
+      - name: Poetry install dependencies
+        run: poetry install
+      - name: tests
+        run: cd ./testing-project && pytest tests/
