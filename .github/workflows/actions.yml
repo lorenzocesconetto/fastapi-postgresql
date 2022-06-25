@@ -16,7 +16,7 @@ jobs:
       - name: Run docker compose
         run: |
           cd ./testing-project
-          docker-compose -f docker/docker-compose.dev.yml up -d
+          docker-compose -f docker-compose.dev.yml up -d
       
       - name: Run tests
         run: docker exec backend pytest ./tests
@@ -25,4 +25,4 @@ jobs:
         if: always()
         run: |
           cd ./testing-project
-          docker-compose -f "docker/docker-compose.yml" down
+          docker-compose -f docker-compose.dev.yml down
