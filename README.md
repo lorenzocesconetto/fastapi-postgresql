@@ -6,12 +6,12 @@ This repo creates a basic FastAPI backend using cookiecutter.
 
 ## Why?
 
-I've based my work off of Tiangolo's [cookiecutter project](https://github.com/tiangolo/full-stack-fastapi-postgresql) project generator. But Tiangolo's project seems to be unmaintained for two years now. There's some code that I've ported from his project that still looks the same. Despite that, I've made some major changes.
+I've based my work on Tiangolo's [cookiecutter project](https://github.com/tiangolo/full-stack-fastapi-postgresql) project generator. But Tiangolo's project seems to be unmaintained for two years now. There's some code that I've ported from his project that still looks the same. Despite that, I've made some major changes.
 
 I decided to create my own boilerplate in order to address some issues:
 - Create a very simple and intuitive codebase.
 - Update python and the packages to the latest version.
-- Make some design changes that provides higher cohesion and lower coupling.
+- Make some design changes that provide higher cohesion and lower coupling.
 
 ## Usage
 
