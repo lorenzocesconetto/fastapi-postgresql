@@ -12,6 +12,15 @@ wait_seconds = 2  # two seconds between retries
 max_tries = 30  # 30 retries -> one minute
 
 
+def run_alembic_migrations():
+    import alembic.config
+    alembicArgs = [
+        '--raiseerr',
+        'upgrade', 'head',
+    ]
+    alembic.config.main(argv=alembicArgs)
+
+
 @retry(
     stop=stop_after_attempt(max_tries),
     wait=wait_fixed(wait_seconds),
@@ -27,5 +36,7 @@ def init() -> None:
     except Exception as e:
         logger.error(e)
         raise e
+    run_alembic_migrations()
     init_db(db)
     logger.info("Service finished initializing")
+
