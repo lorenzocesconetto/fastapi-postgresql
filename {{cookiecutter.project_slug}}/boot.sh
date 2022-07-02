@@ -1,7 +1,5 @@
 #!/bin/sh
 
-alembic upgrade head # migrate database to the latest revision
-
 if [[ $1 != 'production' && $RUN_JUPYTER_LAB == "true" ]]; then
     echo "Starting Jupyter Lab"
     jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.custom_display_url=http://127.0.0.1:8888 &
