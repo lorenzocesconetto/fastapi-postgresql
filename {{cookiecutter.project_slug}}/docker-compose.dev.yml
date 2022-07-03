@@ -37,7 +37,8 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD?Variable not set}
       - POSTGRES_USER=${POSTGRES_USER?Variable not set}
       - POSTGRES_DB=${POSTGRES_DB?Variable not set}
-
+    ports:
+      - "5431:5432" # expose 5431 instead to avoid conflicts with postgres running on host machine
 
   celery_worker:
     build:
@@ -50,6 +51,8 @@ services:
       - queue
     env_file:
       - .env
+    environment:
+      - RUN_MIGRATION=false
 
   queue:
     image: rabbitmq:3.10.5
