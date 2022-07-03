@@ -1,4 +1,5 @@
 import logging
+import os
 
 from tenacity import after_log, before_log, retry, stop_after_attempt, wait_fixed
 
@@ -14,9 +15,11 @@ max_tries = 30  # 30 retries -> one minute
 
 def run_alembic_migrations():
     import alembic.config
+
     alembicArgs = [
-        '--raiseerr',
-        'upgrade', 'head',
+        "--raiseerr",
+        "upgrade",
+        "head",
     ]
     alembic.config.main(argv=alembicArgs)
 
@@ -36,7 +39,11 @@ def init() -> None:
     except Exception as e:
         logger.error(e)
         raise e
-    run_alembic_migrations()
+    if os.environ.get("RUN_MIGRATION") and os.environ["RUN_MIGRATION"].lower() == "false":
+        logger.info("Skipping migrations")
+    else:
+        logger.info("Running migrations")
+        run_alembic_migrations()
+    logger.info("Initializing database entries")
     init_db(db)
     logger.info("Service finished initializing")
-

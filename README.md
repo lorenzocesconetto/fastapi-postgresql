@@ -24,6 +24,16 @@ cookiecutter https://github.com/lorenzocesconetto/fastapi-postgresql
 
 Provide input as you're prompted by cookiecutter and you're all set!
 
+You can run the project with this single command (of course you need docker installed and the docker daemon must be up and running)
+```
+docker-compose -f "docker-compose.dev.yml" up -d --build
+```
+
+You can connect to the database from your terminal running the following command:
+```
+./scripts/psql-connect.sh
+```
+
 ## Make this project better
 
 This is what I see for the next steps of this project, feel free to jump in and open a PR:
