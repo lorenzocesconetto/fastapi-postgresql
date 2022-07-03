@@ -8,7 +8,7 @@ authors = ["Lorenzo C. <lorenzo@deepcellbio.com>"]
 python = "~3.10"
 fastapi = "^0.78.*"
 SQLAlchemy = "^1.4.36"
-alembic = "^1.7.7"
+alembic = "^1.8.0"
 passlib = { extras = ["bcrypt"], version = "^1.7.4" }
 python-jose = { extras = ["cryptography"], version = "^3.3.0" }
 uvicorn = { extras = ["standard"], version = "^0.17.6" }
